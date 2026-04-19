@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Listing = require('./models/listing.js');
 
 const path = require('path');
+const methodOverride = require('method-override')// we can use put req or del req
 
 
 //  DATABASE CONNECTION 
@@ -25,7 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 //  MIDDLEWARE 
 app.use(express.urlencoded({ extended: true }));
-
+app.use(methodOverride('_method'));
 
 
 // STARTING
@@ -54,6 +55,22 @@ app.post("/listings", async(req,res)=>{
     let newListing = new Listing(req.body.listing)
     await  newListing.save();
     res.redirect("./listings");
+})
+
+// EDIT ROUTE
+
+app.get("/listings/:id/edit", async(req,res) => {
+    let { id } = req.params;
+    let editListing = await Listing.findById(id);
+    res.render("./listings/edit.ejs", { editListing });
+})
+
+// UPDATE ROUTE
+app.put("/listings/:id", async(req,res)=>{
+    let { id } = req.params;
+    let listing = req.body.listing;
+    await Listing.findByIdAndUpdate(id,listing);
+    res.redirect(`/listings/${id}`);
 })
 
 

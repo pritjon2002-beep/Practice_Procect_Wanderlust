@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <form action="/listings/<%= editListing._id%>?_method=put" method="post">
+        <input type="text" style="height:50px; width: 50vw;" name="listing[title]" value=<%= editListing.title %> required><br><br>
+        <textarea type="text" style="height:180px; width: 50vw;" name="listing[description]"  required> <%= editListing.description %></textarea><br><br>
+        <input type="text" style="height:50px; width: 50vw;" name="listing[image]" value=<%= editListing.image.url %>  required><br><br>
+        <input type="number"  style="height:50px; width: 50vw;" name="listing[price]" value=<%= editListing.price %>  required><br><br>
+        <input type="text" style="height:50px; width: 50vw;" name="listing[location]" value=<%= editListing.location %>  required><br><br>
+        <input type="text" style="height:50px; width: 50vw;" name="listing[country]" value=<%= editListing.country %>  required><br><br>
+        <button style="height:50px; width: 50vw;">Edit Listing</button> <br><br>
+        <button type="reset"  style="height:50px; width: 50vw;">Reset</button>
+        
+    </form>
+</body>
+</html>

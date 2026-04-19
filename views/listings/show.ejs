@@ -10,9 +10,11 @@
     <ul>
         <li><%=showListing.title %></li>
         <li><%=showListing.description %></li>
-        <li><%=showListing.price %></li>
+        <li> &#8377 <%=showListing.price.toLocaleString("en-IN") %></li>
         <li><%=showListing.location %></li>
         <li><%=showListing.country %></li>
     </ul>
+    <br><br>
+    <a href="/listings/<%= showListing._id %>/edit"><button>Edit Listing</button></a>
 </body>
 </html>
