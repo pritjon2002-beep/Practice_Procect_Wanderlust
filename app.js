@@ -4,7 +4,8 @@ const express = require('express');
 const app = express();
 
 const mongoose = require('mongoose');
-const Listing = require('./models/listing'); // schema required or listing.js required
+const Listing = require('./models/listing.js'); // schema required or listing.js required
+const path = require('path'); // for path here for ejs
 
 // DATABASE CONNECTION
 database()
@@ -21,25 +22,40 @@ async function database(){
     await mongoose.connect('mongodb://127.0.0.1:27017/practiceWanderlust');
 }
 
+// EJS SETUP
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname,"views"));
+
 // STARTING
 app.get("/", (req,res)=>{
     res.send("Welcome to starting page");
 
 })
+// ROUTES
 
-// TEST EITHER THE DATABASE IS WORKING OR NOT
-app.get("/test", async(req,res)=>{
-    let sampleListing = new Listing({
-        title:" people in Nepal",
-        description: "They love Nepal",
-        price: 3000,
-        location : "Kathmandu",
-        country: "Nepal"
-    })
-    await sampleListing.save();
-    console.log("saved");
-    res.send("saved sucess");
+//INDEX ROUTE
+
+app.get("/listings", async(req,res)=>{
+    let allListings = await Listing.find();
+    res.render("./listings/index.ejs", { allListings });
 })
+
+
+
+
+// // TEST EITHER THE DATABASE IS WORKING OR NOT
+// app.get("/test", async(req,res)=>{
+//     let sampleListing = new Listing({
+//         title:" people in Nepal",
+//         description: "They love Nepal",
+//         price: 3000,
+//         location : "Kathmandu",
+//         country: "Nepal"
+//     })
+//     await sampleListing.save();
+//     console.log("saved");
+//     res.send("saved sucess");
+// })
 
 // BACKEND CONNECTION
 app.listen(8080, ()=>{
