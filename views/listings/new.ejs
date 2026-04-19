@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practiceWanderlust</title>
+</head>
+<body>
+    <form action="/listings" method="post">
+        <input type="text" style="height:50px; width: 50vw;" name="listing[title]" placeholder="enter a suitable title" required><br><br>
+        <textarea type="text" style="height:180px; width: 50vw;" name="listing[description]"  required> description</textarea><br><br>
+        <input type="text" style="height:50px; width: 50vw;" name="listing[image]" placeholder="enter image url"><br><br>
+        <input type="number" style="height:50px; width: 50vw;" name="listing[price]" placeholder="enter price" required><br><br>
+        <input type="text" style="height:50px; width: 50vw;" name="listing[location]" placeholder="enter location" required><br><br>
+        <input type="text" style="height:50px; width: 50vw;" name="listing[country]" placeholder="enter country" required><br><br>
+        <button style="height:50px; width: 50vw;">Submit</button>
+    </form>
+</body>
+</html>
