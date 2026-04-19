@@ -1,30 +1,32 @@
-// IMPORTS
-
+//  IMPORTS 
 const express = require('express');
 const app = express();
 
 const mongoose = require('mongoose');
-const Listing = require('./models/listing.js'); // schema required or listing.js required
-const path = require('path'); // for path here for ejs
+const Listing = require('./models/listing.js');
 
-// DATABASE CONNECTION
-database()
-.then(()=>{
-    console.log("Database Connected Sucessfully");
-})
+const path = require('path');
 
-.catch((err)=>{
-    console.log(err);
-    
-})
 
-async function database(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/practiceWanderlust');
+//  DATABASE CONNECTION 
+async function database() {
+    try {
+        await mongoose.connect('mongodb://127.0.0.1:27017/practiceWanderlust');
+        console.log('Database Connected Successfully');
+    } catch (err) {
+        console.log(err);
+    }
 }
+database();
 
-// EJS SETUP
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname,"views"));
+//  EJS SETUP 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+//  MIDDLEWARE 
+app.use(express.urlencoded({ extended: true }));
+
+
 
 // STARTING
 app.get("/", (req,res)=>{
@@ -38,6 +40,13 @@ app.get("/", (req,res)=>{
 app.get("/listings", async(req,res)=>{
     let allListings = await Listing.find();
     res.render("./listings/index.ejs", { allListings });
+})
+
+// SHOW ROUTE
+app.get("/listings/:id", async(req,res)=>{
+    let { id } = req.params;
+    let showListing = await Listing.findById(id);
+    res.render("./listings/show.ejs", { showListing });
 })
 
 
