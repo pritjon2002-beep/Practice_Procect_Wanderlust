@@ -7,6 +7,7 @@ const Listing = require('./models/listing.js');
 
 const path = require('path');
 const methodOverride = require('method-override')// we can use put req or del req
+const ejsMate = require("ejs-mate");
 
 
 //  DATABASE CONNECTION 
@@ -27,6 +28,9 @@ app.set('views', path.join(__dirname, 'views'));
 //  MIDDLEWARE 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.engine("ejs",ejsMate);
+
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // STARTING
@@ -107,6 +111,6 @@ app.get("/listings/:id", async(req,res)=>{
 // })
 
 // BACKEND CONNECTION
-app.listen(8080, ()=>{
-    console.log("Server is running on port 8080");
+app.listen(3000, ()=>{
+    console.log("Server is running on port 3000");
 })
