@@ -11,33 +11,45 @@
                 <div class="mt-3">
                     <label for="title" class="form-label">Title : </label>
                     <input type="text" name="editListing[title]" id="title" value="<%= editListing.title %>" class="form-control" required>
-                </div>
+               <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">inValid </div>
+     </div>
                 
                 <div class="mt-3">
                 <label for="description" class="form-label">Description : </label>
-                <input type="text" name="editListing[description]" id="description" value="<%= editListing.description %>" class="form-control" required>
-            </div>
+                <textarea type="text" name="editListing[description]" id="description" value="<%= editListing.description %>" class="form-control" required> </textarea>
+          <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">inValid </div>
+      </div>
             
                 <div class="mt-3">
                 <label for="image" class="form-label">Image URL: </label>
                 <input type="text" name="editListing[image][url]" id="image" value="<%= editListing.image.url %>" class="form-control" required>
-            </div>
+           <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">inValid </div>
+     </div>
             
                 <div class="mt-3">
                 <label for="location" class="form-label">location : </label>
                 <input type="text" name="editListing[location]" id="location" value="<%= editListing.location %>" class="form-control" required>
-            </div>
+           <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">inValid </div>
+     </div>
             
             <div class="row">
                 <div class="col-md-4 mt-3">
                 <label for="price" class="form-label">Price : </label>
                 <input type="text" name="editListing[price]" id="price" value="<%= editListing.price %>" class="form-control" required>
-            </div>
+         <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">inValid </div>
+       </div>
 
              <div class="col-md-8 mt-3">
                 <label for="country" class="form-label">Country : </label>
                 <input type="text" name="editListing[country]" id="country" value="<%= editListing.country %>" class="form-control" required>
-            </div>
+         <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">inValid </div>
+       </div>
             </div>
 
             <button class="btn btn-success mt-3">Edit Listing</button>
