@@ -2,17 +2,25 @@
 
 
 <body>
-    <h1><%= showListing.title %> </h1>
-
-    <ul>
-        <li><%=showListing.title %></li>
-        <li><%=showListing.description %></li>
-        <li> &#8377 <%=showListing.price.toLocaleString("en-IN") %></li>
-        <li><%=showListing.location %></li>
-        <li><%=showListing.country %></li>
-    </ul>
-    <br><br>
-    <a href="/listings/<%= showListing._id %>/edit"><button>Edit Listing</button></a><br><br>
-        <form action="/listings/<%= showListing._id %>?_method=DELETE" method="post"><button>Delete Listing</button></form>
-
+    
+<div class="row">
+    <div class="col-6 offset-2">
+        <span class="fs-3"><%= showListing.title %> </span>
+       <div class="card">
+        <img src="<%= showListing.image.url %>" alt="Listing_Image" class=""height="300vh">
+        <div class="card-body">
+            <div class="mt-2"><%=showListing.description %></div>
+            <div class="mt-2"><%=showListing.price.toLocaleString("en-IN") %></div>
+            <div class="mt-2"><%=showListing.location %></div>
+            <div class="mt-2"><%=showListing.country %></div>
+        </div>
+       </div> 
+       <div class="row d-flex m-0">
+       <div class="col-md-3 me-0">
+<a href="/listings/<%= showListing._id %>/edit"><button class="btn btn-success">Edit Listing</button></a><br><br>
+       </div>
+       <div class="col-md-8">
+<form action="/listings/<%= showListing._id %>?_method=DELETE" method="post"><button class="btn btn-danger">Delete Listing</button></form>
+       </div>
+</div>
 </body>
